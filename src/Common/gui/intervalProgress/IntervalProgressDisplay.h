@@ -2,6 +2,7 @@
 #define CIRCULAR_PROGRESS_DISPLAY
 
 #include <QFrame>
+#include <QPainterPath>
 #include <QScopedPointer>
 
 class QResizeEvent;

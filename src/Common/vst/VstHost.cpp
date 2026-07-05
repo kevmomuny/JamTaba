@@ -136,7 +136,7 @@ bool VstHost::tempoIsValid() const
     return this->vstTimeInfo.flags & kVstTempoValid;
 }
 
-long VSTCALLBACK VstHost::hostCallback(AEffect *effect, long opcode, long index, long value, void *ptr, float opt)
+VstIntPtr VSTCALLBACK VstHost::hostCallback(AEffect *effect, VstInt32 opcode, VstInt32 index, VstIntPtr value, void *ptr, float opt)
 {
     Q_UNUSED(effect)
     Q_UNUSED(index)
@@ -173,7 +173,7 @@ long VSTCALLBACK VstHost::hostCallback(AEffect *effect, long opcode, long index,
         return true;
 
     case audioMasterGetTime:  // 7
-        return (long)(&VstHost::getInstance()->vstTimeInfo);
+        return (VstIntPtr)(&VstHost::getInstance()->vstTimeInfo);
 
     case audioMasterGetCurrentProcessLevel:  // 23
         return 2L;

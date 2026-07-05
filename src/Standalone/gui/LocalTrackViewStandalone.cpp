@@ -1,4 +1,5 @@
 #include "LocalTrackViewStandalone.h"
+#include <QPainterPath>
 #include "audio/core/LocalInputNode.h"
 #include "audio/core/Plugins.h"
 #include "FxPanel.h"

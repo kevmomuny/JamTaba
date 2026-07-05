@@ -1,4 +1,5 @@
 #include "ChatMessagePanel.h"
+#include <QPainterPath>
 #include "ui_ChatMessagePanel.h"
 #include "log/Logging.h"
 #include "EmojiManager.h"

@@ -1,4 +1,5 @@
 #include "LooperWavePanel.h"
+#include <QPainterPath>
 #include "looper/Looper.h"
 
 #include <QKeyEvent>

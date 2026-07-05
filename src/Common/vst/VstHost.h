@@ -39,8 +39,11 @@ public:
     void setPositionInSamples(int intervalPosition) override;
 
 protected:
-    static long VSTCALLBACK hostCallback(AEffect *effect, long opcode, long index, long value,
-                                         void *ptr, float opt);
+    // VST2 ABI: VstIntPtr return/value are pointer-sized (64-bit on x64). Using
+    // 'long' (32-bit on Win64) truncates the VstTimeInfo* returned for
+    // audioMasterGetTime and crashes plugins that dereference it.
+    static VstIntPtr VSTCALLBACK hostCallback(AEffect *effect, VstInt32 opcode, VstInt32 index,
+                                              VstIntPtr value, void *ptr, float opt);
 
 signals:
     void pluginRequestingWindowResize(const QString &pluginName, int newWidth, int newHeight);

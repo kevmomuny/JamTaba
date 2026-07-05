@@ -117,14 +117,16 @@ win32{
     CONFIG(release, debug|release): LIBS += -L$$PWD/../../libs/$$LIBS_PATH -lportaudio
     else:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../libs/$$LIBS_PATH/ -lportaudiod
 
-    LIBS += -L$$PWD/../../libs/$$LIBS_PATH -lminimp3 -lvorbisfile -lvorbis -logg -lx264 -lavcodec -lavutil -lavformat -lswscale -lswresample -lstackwalker -lminiupnpc
+    LIBS += -L$$PWD/../../libs/$$LIBS_PATH -lminimp3 -lvorbisfile -lvorbisenc -lvorbis -logg -lx264 -lavcodec -lavutil -lavformat -lswscale -lswresample -lstackwalker -lminiupnpc
 
     CONFIG(release, debug|release) {
         #ltcg - http://blogs.msdn.com/b/vcblog/archive/2009/02/24/quick-tips-on-using-whole-program-optimization.aspx
-        QMAKE_CXXFLAGS_RELEASE +=  -GL -Gy -Gw
-        QMAKE_LFLAGS_RELEASE += /LTCG
+        # LTCG disabled for MSVC2019 rebuild (C1047 vs 2013-era libs)
+        QMAKE_CXXFLAGS_RELEASE += -Gy -Gw
+        # QMAKE_LFLAGS_RELEASE += /LTCG
     }
 
+    LIBS += -lcompat -llegacy_stdio_definitions # UCRT shims for 2013-era mingw-built ffmpeg/x264 objects
     LIBS += -lwinmm -lole32 -lws2_32 -lAdvapi32 -lUser32 -lPsapi
     LIBS += -lIPHlpApi # used by miniupnp lib
     LIBS += -lSecur32   # used by libx264
