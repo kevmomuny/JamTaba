@@ -55,3 +55,5 @@ GeneratedFiles/
 PROJECTS/AUPlugin/JamTaba.xcodeproj/xcshareddata/
 *.zip
 build/
+.claude/lifecycle.json
+.claude/agent-locks/
