@@ -1,0 +1,13 @@
+{
+  "purpose": "feature",
+  "sprint": "fix-win64-msvc2019-build",
+  "branch": "fix/win64-msvc2019-build",
+  "ttl_hours": 168,
+  "reclaim_when": [
+    "pr_merged",
+    "ttl_exceeded",
+    "branch_deleted"
+  ],
+  "owner_session": "pid-280-1783293565003",
+  "created": "2026-07-05T23:19:25.113Z"
+}

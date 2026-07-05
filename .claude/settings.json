@@ -1,0 +1,145 @@
+{
+  "respectGitignore": true,
+  "env": {
+    "ENABLE_TOOL_SEARCH": "auto:8",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "72",
+    "NO_UPDATE_NOTIFIER": "1"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/worktree-lock-acquire.cjs\"",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/active-agents-update.cjs\" register",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/worktree-lifecycle-pulse.cjs\"",
+            "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/root-integrity-pulse.cjs\"",
+            "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/session-init.cjs\"",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "matcher": "resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/worktree-lock-acquire.cjs\"",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/active-agents-update.cjs\" register",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/session-init.cjs\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/root-push-guard.cjs\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/worktree-strict-guard.cjs\"",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/require-decision-log.cjs\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/verify-test-output.cjs\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/worktree-lock-heartbeat.cjs\"",
+            "timeout": 3
+          },
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/invalidate-review.cjs\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/active-agents-update.cjs\" unregister",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/worktree-lock-release.cjs\"",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node \"/c/dev/JamTaba/.claude/hooks/worktree-zombie-killer.cjs\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  },
+  "plansDirectory": ".claude/plans"
+}
