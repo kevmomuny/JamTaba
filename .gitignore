@@ -52,5 +52,6 @@ GeneratedFiles/
 
 *.xcbkptlist
 *.xcuserstate
-PROJECTS/AUPlugin/JamTaba.xcodeproj/xcshareddata/build/
+PROJECTS/AUPlugin/JamTaba.xcodeproj/xcshareddata/
 *.zip
+build/
