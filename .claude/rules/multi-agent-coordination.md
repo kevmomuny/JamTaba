@@ -6,7 +6,7 @@ Ported from energen-os-suite; same protocol, JamTaba paths. Applies when two or 
 
 ```bash
 git worktree list
-git fetch origin upstream 2>/dev/null || true   # origin = kevmomuny/JamTaba (fork), upstream = elieserdejesus (read-only)
+git fetch --multiple origin upstream 2>/dev/null || true   # origin = kevmomuny/JamTaba (fork), upstream = elieserdejesus (read-only)
 git log --oneline --all --max-count 10
 node .claude/lib/active-agents.cjs list   # live agents, dead-PID-pruned
 ```
