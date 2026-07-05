@@ -6,7 +6,7 @@ Ported from energen-os-suite; same protocol, JamTaba paths. Applies when two or 
 
 ```bash
 git worktree list
-git fetch origin 2>/dev/null || true   # origin = upstream elieserdejesus/JamTaba (read-only)
+git fetch origin upstream 2>/dev/null || true   # origin = kevmomuny/JamTaba (fork), upstream = elieserdejesus (read-only)
 git log --oneline --all --max-count 10
 node .claude/lib/active-agents.cjs list   # live agents, dead-PID-pruned
 ```
@@ -39,4 +39,4 @@ Before the lead touches a teammate's worktree: SendMessage `"I'm taking it. Stan
 
 ## 7 · Upstream relationship
 
-`origin` = `elieserdejesus/JamTaba` (dormant, unlicensed — treat as read-only; we never push there). Local integration branch: `fix/win64-msvc2019-build` (or its successor). Publishing anything (fork remote, releases, PRs upstream) is Tier-1 — Kevin decides.
+`upstream` = `elieserdejesus/JamTaba` (dormant, unlicensed — read-only, never push). `origin` = `kevmomuny/JamTaba` (our public fork, created 2026-07-05 on Kevin's authorization) — integration branch `fix/win64-msvc2019-build` lives there. Releases and upstream PRs remain Tier-1 — Kevin decides.

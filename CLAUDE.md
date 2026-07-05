@@ -2,8 +2,7 @@
 
 Open-source NINJAM jam client (C++ / Qt 5, qmake). Upstream `elieserdejesus/JamTaba` is
 dormant (last commit Oct 2021, last release 2.1.16 Aug 2020) and has **no license file** —
-personal use and local dev are fine; **publishing anything (fork remote, releases, upstream
-PRs) is Tier-1, Kevin decides.** This clone carries our Win x64 revival work.
+personal use and local dev are fine; **public fork exists at `kevmomuny/JamTaba` (Kevin authorized 2026-07-05); releases and upstream PRs remain Tier-1, Kevin decides.** This clone carries our Win x64 revival work.
 
 ## Working build (verified 2026-07-05)
 
@@ -47,7 +46,7 @@ AmpliTube 5 + TONEX are the standard plugin-hosting test pair.
 - 4-space indent C++ (match existing files), `CONFIG += c++11` — don't introduce >C++11 features
   without a deliberate toolchain decision.
 - Commit messages: imperative, 50-char subject, `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`.
-- Never force push. `origin` (upstream) is read-only — no pushes there, ever.
+- Never force push. Remotes: `origin` = `kevmomuny/JamTaba` (our fork — push here), `upstream` = `elieserdejesus/JamTaba` (dormant source — read-only, never push).
 - Windows FS gotcha: `src/resources/emoji/categories/` has a `Recent.png`/`recent.png` case
   collision — one is missing on Windows checkouts; expect a benign resource warning.
 
